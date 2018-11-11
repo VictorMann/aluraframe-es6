@@ -1,5 +1,5 @@
 <h1>Projeto Alura</h1>
-<h3>title: Javascript Avançado ES6 - Orientação a Objetos e Padrões de Projetos/h3>
+<h3>title: Javascript Avançado ES6 - Orientação a Objetos e Padrões de Projetos</h3>
 <section>
     <p>
         Este projeto destina-se como aprimoramento profissional, visando capacitação e qualificação para o mercado de trabalho.

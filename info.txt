@@ -10,3 +10,6 @@ O que vimos foi relevante porque o modelo é uma das coisas mais importantes qua
 
 Vamos continuar com os nossos estudos e façam os exercícios para praticar os conceitos vistos.
 =============
+Immediately-invoked function expression (IIFE) ou a função imediata
+(function(){ ... })()
+=============

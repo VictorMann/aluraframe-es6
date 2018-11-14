@@ -14,7 +14,13 @@ class DateHelper
 
     static dataParaTexto(data)
     {
+        let day = data.getDate();
+        let month = data.getMonth() +1;
+
+        day   =  day   < 10 ? '0' +  day : day;
+        month =  month < 10 ? '0' +  month : month;
+       
         // template string
-        return `${data.getDate()}/${data.getMonth()+1}/${data.getFullYear()}`;
+        return `${day}/${month}/${data.getFullYear()}`;
     }
 }

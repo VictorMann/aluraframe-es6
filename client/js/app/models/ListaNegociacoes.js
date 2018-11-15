@@ -15,4 +15,9 @@ class ListaNegociacoes
         // programação defensiva
         return [].concat(this._negociacoes);
     }
+
+    esvazia()
+    {
+        this._negociacoes = [];
+    }
 }

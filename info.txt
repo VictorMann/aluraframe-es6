@@ -13,3 +13,22 @@ Vamos continuar com os nossos estudos e façam os exercícios para praticar os c
 Immediately-invoked function expression (IIFE) ou a função imediata
 (function(){ ... })()
 =============
+// executa uma funçao em um contexto determinado
+Reflect.apply(function, contexto, [params,..]);
+=============
+let negociacao = new Proxy(new Negociacao(new Date(), 1, 100), {
+
+    get: function(target, prop, receiver) {
+
+        console.log(`a propriedade "${prop}" foi interceptada`);
+        return Reflect.get(target, prop, receiver);
+    }
+});
+
+Mas por que a mensagem foi impressa duas vezes, com um pequena diferença. Isto ocorre, porque no arquivo Negociacao.js, ele irá interceptar para quantidade e _quantidade.
+
+get quantidade() {
+
+    return this._quantidade;
+}
+=============

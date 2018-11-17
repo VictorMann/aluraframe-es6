@@ -38,6 +38,18 @@ class NegociacaoController
         this._mensagem.texto = 'Negociações apagadas com sucesso!';
     }
 
+    importaNegociacoes()
+    {
+        let service = new NegociacaoService;
+        service.obterNegociacoesDaSemana((err, response) => {
+            if (err) this._mensagem.texto = err;
+            else {
+                response.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
+                this._mensagem.texto = 'Negociacoes importadas com sucesso!';
+            }
+        })
+    }
+
     _criaNegociacao()
     {
         return new Negociacao(

@@ -47,14 +47,12 @@ class NegociacaoController
             service.obterNegociacoesDaSemanaAnterior(),
             service.obterNegociacoesDaSemanaRetrasada()
         ])
-        .then(lista =>
+        .then(lista => {
             lista
             .reduce((arrFlat, arr) => arrFlat.concat(arr), [])
-            .forEach(negociacao => {
-                this._listaNegociacoes.adiciona(negociacao);
-                this._mensagem.texto = 'Importação realizada com sucesso!';
-            })
-        )
+            .forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
+            this._mensagem.texto = 'Importação realizada com sucesso!';
+        })
         .catch(err => this._mensagem.texto = err);
     }
 

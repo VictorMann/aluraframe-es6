@@ -5,6 +5,49 @@ class NegociacaoService
         this._httpService = new HttpService;
     }
 
+    cadastra(negocicao)
+    {
+        return ConnectionFactory
+        .getConnection()
+        .then(connection => new NegociacaoDao(connection))
+        .then(dao => dao.adiciona(negocicao))
+        .then(() => 'Negociação adicionada com sucesso!');
+    }
+
+    lista()
+    {
+        return ConnectionFactory
+        .getConnection()
+        .then(connection => new NegociacaoDao(connection))
+        .then(dao => dao.listaTodos());
+    }
+
+    apaga()
+    {
+        return ConnectionFactory
+        .getConnection()
+        .then(connection => new NegociacaoDao(connection))
+        .then(dao => dao.apagaTodos());
+    }
+
+    importa(listaAtual)
+    {
+        return Promise.all([
+            this.obterNegociacoesDaSemana(),
+            this.obterNegociacoesDaSemanaAnterior(),
+            this.obterNegociacoesDaSemanaRetrasada()
+        ])
+        .then(listaImportada =>
+            listaImportada
+            .reduce((arrFlat, arr) => arrFlat.concat(arr), [])
+            .filter(negociacao =>
+                !listaAtual.some(negociacaoExistente =>
+                    JSON.stringify(negociacaoExistente) == JSON.stringify(negociacao)
+                )
+            )
+        );
+    }
+
     obterNegociacoesDaSemana()
     {
         return new Promise((resolve, reject) => {

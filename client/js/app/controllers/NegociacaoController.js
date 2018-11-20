@@ -22,6 +22,14 @@ class NegociacaoController
             'texto'
         );
 
+        // ação inicial
+        this._init();
+    }
+
+    _init()
+    {
+        // lista todas as negociações na tabela presentes
+        // no indexedDB
         ConnectionFactory
         .getConnection()
         .then(connection => new NegociacaoDao(connection))
@@ -30,6 +38,9 @@ class NegociacaoController
             negociacoes.forEach(negociacao => 
                 this._listaNegociacoes.adiciona(negociacao))
         );
+
+        // importa negociações em intervalos
+        setInterval(() => this.importaNegociacoes(), 3000);
     }
 
     adiciona(event)

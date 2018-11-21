@@ -1,4 +1,6 @@
-class Bind
+import {ProxyFactory} from '../services/ProxyFactory';
+
+export class Bind
 {
     // REST operator (...)
     constructor(model, view, ...props)

@@ -7,6 +7,16 @@ class HttpService
         .then(res => res.json());
     }
 
+    post(url, dado)
+    {
+        return fetch(url, {
+            headers: {'Content-Type': 'application/json'},
+            method: 'post',
+            body: JSON.stringify(dado)
+        })
+        .then(res => this._handlerError(res));
+    }
+
     _handlerError(res)
     {
         if (!res.ok) throw new Error(res.statusText);

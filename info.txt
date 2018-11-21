@@ -32,3 +32,9 @@ get quantidade() {
     return this._quantidade;
 }
 =============
+para executar comando do babel
+> npm run build
+
+Podemos pedir para que Babel gere um sourcemap , ao compilar nossos arquivos. Trata-se de um arquivo que liga o arquivo resultante da compilação com o seu original para efeito de depuração, ou seja, para uso do debugger.
+
+"build": "babel js/app-es6 -d js/app --source-maps"

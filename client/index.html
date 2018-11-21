@@ -13,7 +13,7 @@
     
     <div id="mensagemView"></div>
 
-    <form class="form" onsubmit="negociacaoController.adiciona(event)">
+    <form class="form">
         
         <div class="form-group">
             <label for="data">Data</label>
@@ -34,10 +34,10 @@
     </form>
     
     <div class="text-center">
-        <button onclick="negociacaoController.importaNegociacoes()" class="btn btn-primary text-center disabled" type="button">
+        <button id="btn-importa" class="btn btn-primary text-center disabled" type="button">
             Importar Negociações
         </button>
-        <button onclick="negociacaoController.apaga()" class="btn btn-primary text-center" type="button">
+        <button id="btn-apaga" class="btn btn-primary text-center" type="button">
             Apagar
         </button>
     </div> 
@@ -46,8 +46,6 @@
     
     <div id="negociacoesView"></div>
     <script src="node_modules/systemjs/dist/system.js"></script>
-    <script src="js/app/polyfill/es6.js"></script>
-    <script src="js/app/polyfill/fetch.js"></script>
     <script>
         System.defaultJSExtensions = true; // permite omitir a extensão .js dos imports
         System.import('js/app/boot').catch(function(err){

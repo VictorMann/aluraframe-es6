@@ -7,7 +7,7 @@ import {NegociacaoService} from '../services/NegociacaoService';
 import {DateHelper} from '../helpers/DateHelper';
 import {Bind} from '../helpers/Bind';
 
-export class NegociacaoController
+class NegociacaoController
 {
     constructor()
     {
@@ -16,12 +16,14 @@ export class NegociacaoController
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
+        
+        this._ordemAtual = '';
 
         this._negociacoesView = new NegociacoesView($('#negociacoesView'));
         this._listaNegociacoes = new Bind(
             new ListaNegociacoes,
             this._negociacoesView,
-            'adiciona', 'esvazia'
+            'adiciona', 'esvazia', 'ordena', 'inverteOrdem'
         );
         
         this._mensagemView = new MensagemView($('#mensagemView'));
@@ -80,6 +82,14 @@ export class NegociacaoController
         .catch(erro => this._mensagem.texto = erro);
     }
 
+    ordena(coluna)
+    {
+        if (this._ordemAtual == coluna) this._listaNegociacoes.inverteOrdem();
+        else this._listaNegociacoes.ordena((p, s) => p[coluna] - s[coluna]);
+        console.log(this._listaNegociacoes.negociacoes);
+        this._ordemAtual = coluna;
+    }
+
     importaNegociacoes()
     {
         this._service
@@ -108,4 +118,10 @@ export class NegociacaoController
 
         this._inputData.focus();
     }
+}
+
+let negociacaoController = new NegociacaoController;
+
+export function currentInstance() {
+    return negociacaoController;
 }

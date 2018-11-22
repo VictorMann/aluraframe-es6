@@ -7,7 +7,7 @@ export class ProxyFactory
             {
                 if (props.includes(prop) && typeof(target[prop]) == typeof(Function)) {
                     return function() {
-                        console.log(`interceptandoi ${prop}`);
+                        console.log(`interceptando ${prop}`);
                         Reflect.apply(target[prop], target, arguments);
                         return acao(target);
                     }
